@@ -1,5 +1,5 @@
 pkgname=postmarketos-ui-weston
-pkgver=3
+pkgver=4
 pkgrel=0
 pkgdesc="Meta package for weston"
 url="https://github.com/postmarketOS"
@@ -19,4 +19,4 @@ package() {
 		"$pkgdir"/etc/profile.d/start_weston.sh
 }
 sha512sums="1fb3dff37e7db7277f713958eeb9b9b8eae730aec2fe02d2c87d036d23b7f3a79779288f5ddf9a3b05465beea5410133fb4b0268b0544a07c08b9d53cdce4745  start_weston.sh
-066071c0fa1b35079c28dc18ce66ac56575d49df06f1a217e308ea0b4587436e76432817091737eb9a17e7eecfc855d4d488e5850c77ccbaa3ee4e6a3949dbb8  postmarketos-ui-weston.post-install"
+115fe247e5211105d90f083fdf04d1f3fdf6c14afc09d554d8728d29555440d1115f4209c77c7fb1226a6b1a47394834abd75cfc75f8da73f9f43ccb8094fd41  postmarketos-ui-weston.post-install"
