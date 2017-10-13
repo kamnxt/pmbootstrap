@@ -25,6 +25,17 @@ import pmb.helpers.cli
 import pmb.config
 
 
+def previous_install(args, blk_dev):
+    """
+    Search a block device for possible existence of a previous installation of pmOS
+
+    :param blk_dev: path to block device
+    """
+    label = pmb.helpers.run.user(args, ["blkid", "-s", "LABEL", "-o", "value",
+                                 blk_dev], return_stdout=True)
+    return "pmOS_boot" in label
+
+
 def mount_sdcard(args):
     # Sanity checks
     if args.deviceinfo["external_disk_install"] != "true":
@@ -37,9 +48,15 @@ def mount_sdcard(args):
         if pmb.helpers.mount.ismount(path):
             raise RuntimeError(path + " is mounted! We will not attempt"
                                " to format this!")
-    if not pmb.helpers.cli.confirm(args, "EVERYTHING ON " + args.sdcard +
-                                   " WILL BE ERASED! CONTINUE?"):
-        raise RuntimeError("Aborted.")
+    for partition in [args.sdcard + "1", args.sdcard + "p1"]:
+        if not os.path.exists(partition):
+            continue
+        if previous_install(args, partition):
+            if pmb.helpers.cli.confirm(args, "WARNING: This device has a"
+                                       " previous installation of pmOS."
+                                       " CONTINUE?"):
+                break
+            raise RuntimeError("Aborted.")
 
     logging.info("(native) mount /dev/install (host: " + args.sdcard + ")")
     pmb.helpers.mount.bind_blockdevice(args, args.sdcard,
