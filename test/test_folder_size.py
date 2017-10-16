@@ -48,4 +48,6 @@ def test_get_folder_size(args, tmpdir):
                                     "count=2", "conv=notrunc"])
 
     # Check if the size is correct
-    assert pmb.helpers.other.folder_size(args, tmpdir) == 20480
+    # 140 bytes seem to get added by the filesystem for the directory
+    size = 2048 * files + 140
+    assert pmb.helpers.other.folder_size(args, tmpdir) == size

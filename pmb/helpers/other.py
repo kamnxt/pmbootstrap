@@ -31,6 +31,7 @@ def folder_size(args, path):
     :returns: folder size in bytes
     """
     output = pmb.helpers.run.root(args, ["du", "--summarize",
+                                         "--apparent-size",
                                          "--block-size=1",
                                          path], return_stdout=True)
     ret = int(output.split("\t")[0])
