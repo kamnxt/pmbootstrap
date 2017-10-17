@@ -26,7 +26,9 @@ import pmb.helpers.run
 def folder_size(args, path):
     """
     Run `du` to calculate the size of a folder (this is less code and
-    faster than doing the same task in pure Python).
+    faster than doing the same task in pure Python). This result is only
+    approximatelly right, but good enough for pmbootstrap's use case:
+    <https://github.com/postmarketOS/pmbootstrap/pull/760>
 
     :returns: folder size in bytes
     """
