@@ -1,0 +1,6 @@
+# In postmarketOS, this file gets used, when no /etc/xdg/weston.ini exists. That 
+# is, so we can install a device specific config file (which may disable 
+# xwayland for example) from the device specific package to /etc/xdg/weston.ini.
+
+[core]
+modules=xwayland.so

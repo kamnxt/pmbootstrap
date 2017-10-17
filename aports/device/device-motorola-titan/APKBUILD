@@ -1,6 +1,6 @@
 pkgname=device-motorola-titan
 pkgver=1
-pkgrel=14
+pkgrel=15
 pkgdesc="Motorola Moto G 2014"
 url="https://github.com/postmarketOS"
 arch="noarch"
@@ -8,22 +8,29 @@ license="MIT"
 depends="linux-motorola-titan mkbootimg msm-fb-refresher"
 makedepends=""
 install=""
-subpackages=""
-source="deviceinfo 90-android-touch-dev.rules profile.sh udev-v4l-hack.sh"
+subpackages="$pkgname-weston"
+source="deviceinfo 90-android-touch-dev.rules profile.sh udev-v4l-hack.sh weston.ini"
 options="!check"
 
 package() {
-	install -D -m644 "$srcdir/deviceinfo" \
+	install -Dm644 "$srcdir/deviceinfo" \
 		"$pkgdir/etc/deviceinfo"
-	install -D -m644 "$srcdir"/90-android-touch-dev.rules \
+	install -Dm644 "$srcdir"/90-android-touch-dev.rules \
 		"$pkgdir"/etc/udev/rules.d/90-android-touch-dev.rules
-	install -D -m644 "$srcdir"/profile.sh \
+	install -Dm644 "$srcdir"/profile.sh \
 		"$pkgdir"/etc/profile.d/00-$pkgname.sh
-	install -D -m644 "$srcdir"/udev-v4l-hack.sh \
+	install -Dm644 "$srcdir"/udev-v4l-hack.sh \
 		"$pkgdir"/etc/profile.d/00-udev-v4l-hack.sh
+}
+
+weston() {
+	install_if="$pkgname weston"
+	install -Dm644 "$srcdir"/weston.ini \
+		"$subpkgdir"/etc/xdg/weston.ini
 }
 
 sha512sums="0f975a652f6ad14fb51469d832467eec0ca8f873a827c92ee168153c256c98f0749c0f165239c6839b5854ae06b9f6e52c0f6217e3b96ed5427052facc1be30a  deviceinfo
 f37e6324abf0b0fc8a3d360d6d11bb0648090a438a55ca7f04a9d494719e687ce445ae107ace642edf293afb6ca82615bcb5d0ddb6c46c1a7f8ee3c213b7c5c4  90-android-touch-dev.rules
 d04013c17caf77a87ebea167dbe48f7efa9c9d3123c5743d359f3ea8ccc6b268fa021535a4bf8291eb4a352f0c92f6eb527da0db340421f53bc1cc439a453306  profile.sh
-4f528656c4febb18742e89552dfe7fdc824ed4ad6ad2777d20b4f55040edd93d8e3ea657baabcdbe77bd0fb4bd3d23e5e0b2dae574f0df6723b2e26216ee81e1  udev-v4l-hack.sh"
+4f528656c4febb18742e89552dfe7fdc824ed4ad6ad2777d20b4f55040edd93d8e3ea657baabcdbe77bd0fb4bd3d23e5e0b2dae574f0df6723b2e26216ee81e1  udev-v4l-hack.sh
+01e22c0c6bdd58410a5e47433e2e03f4ed37d6ca10fbbc44bc4307b877006c168c859189b6e9565996576f2ae4a4054fd50912c084c248f6a784d435a67fba5c  weston.ini"

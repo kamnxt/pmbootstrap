@@ -11,12 +11,15 @@ depends="weston-clients weston weston-shell-desktop weston-backend-fbdev
 makedepends=""
 install="$pkgname.post-install"
 subpackages=""
-source="start_weston.sh $install"
+source="start_weston.sh weston.ini.default $install"
 options="!check"
 
 package() {
 	install -D -m644 "$srcdir"/start_weston.sh \
 		"$pkgdir"/etc/profile.d/start_weston.sh
+	install -D -m644 "$srcdir"/weston.ini.default \
+		"$pkgdir"/etc/xdg/weston.ini.default
 }
-sha512sums="9281ec20d0367d11e8219cc248ebab94194c703fe87e3e4fcbd128d54a67f77d17781b006721a04e5bd3fd4a95616f22a79e88cbdc6d5cc29f86fcfb4fc07755  start_weston.sh
+sha512sums="07263852ac366942a708fba4fe292454479d590e070827275a2d448f48117222b73f317085304d8ad7fc7011cb8bd0a805d40d39da00fdf723c54e9c5299edfc  start_weston.sh
+d15043acec5ce2f4052d95dca570846b9eea826d5336225a8a75e17f85da25cfaa6a06732fede80740f67a158904aaa827ffb7fb14c2d78eb63b5b65678310b7  weston.ini.default
 794827b6878cdca8231fc106ba649a3e9aa9f74df0ef7e5e3598462b3c93c67cb3b0af95cadb92a62471730a518024ae6be95c0fc59af6b929482148f16c2184  postmarketos-ui-weston.post-install"
