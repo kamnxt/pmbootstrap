@@ -1,6 +1,6 @@
 pkgname=postmarketos-ui-weston
 pkgver=4
-pkgrel=2
+pkgrel=3
 pkgdesc="(Wayland) Reference compositor (demo, not a phone interface)"
 url="https://github.com/postmarketOS"
 arch="noarch"
@@ -20,6 +20,6 @@ package() {
 	install -D -m644 "$srcdir"/weston.ini.default \
 		"$pkgdir"/etc/xdg/weston.ini.default
 }
-sha512sums="07263852ac366942a708fba4fe292454479d590e070827275a2d448f48117222b73f317085304d8ad7fc7011cb8bd0a805d40d39da00fdf723c54e9c5299edfc  start_weston.sh
+sha512sums="784161c77aef59ad04b3ada8eab9f4d38046de0d68cfb097b3e0e832a2844020a46a8d8680860991555f3a3da9fed9369be2522f503979f324c1a59ec792b535  start_weston.sh
 fe21b2dd3935ea2d380c454c45367f8a8c7ba3349514b4c5c842e814c48259a67a0ef83f6c8f3752db06f655b31f298dd891a6bd894fb4a77aa3611d69077820  weston.ini.default
 794827b6878cdca8231fc106ba649a3e9aa9f74df0ef7e5e3598462b3c93c67cb3b0af95cadb92a62471730a518024ae6be95c0fc59af6b929482148f16c2184  postmarketos-ui-weston.post-install"
