@@ -6,7 +6,7 @@ pkgver=1
 pkgrel=1
 pkgdesc="Firmware files for Xperia Z1 Compact"
 url="https://github.com/TheMuppets/proprietary_vendor_sony"
-arch="all"
+arch="noarch"
 license="proprietary"
 depends="wcnss-wlan"
 makedepends=""
@@ -22,7 +22,7 @@ for _i in $_files1
 do
 	source="$source $pkgname-$pkgver-r$pkgrel-$_i::$_url/wlan/prima/$_i"
 done
-options="!strip !check"
+options="!strip !check !archcheck"
 
 package() {
 	mkdir -p $pkgdir/lib/firmware/postmarketos
