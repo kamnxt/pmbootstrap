@@ -3,7 +3,7 @@
 pkgname="linux-lg-h815"
 pkgver=3.10.84
 pkgrel=0
-pkgdesc="LG LG G4 (h815) kernel fork"
+pkgdesc="LG G4 (h815) kernel fork"
 arch="aarch64"
 _carch="arm64"
 _flavor="lg-h815"
@@ -22,30 +22,12 @@ source="
 	$pkgname-$_commit.tar.gz::https://github.com/LineageOS/${_repository}/archive/${_commit}.tar.gz
 	$_config
 	compiler-gcc6.h
-        fix-powerlevel.patch
+	fix-powerlevel.patch
 "
 builddir="$srcdir/${_repository}-${_commit}"
 
 prepare() {
 	default_prepare
-#	# first apply patches in specified order
-#	for i in $source; do
-#		case $i in
-#		*.patch)
-#			msg "Applying $i..."
-#			if ! patch -s -p1 -N -i "$srcdir"/$i; then
-#				echo $i >>failed
-#				_patch_failed=1
-#			fi
-#			;;
-#		esac
-#	done
-
-#	if ! [ -z "$_patch_failed" ]; then
-#		error "The following patches failed:"
-#		cat failed
-#		return 1
-#	fi
 
 	# gcc6 support
 	cp -v "$srcdir/compiler-gcc6.h" "$builddir/include/linux/"
