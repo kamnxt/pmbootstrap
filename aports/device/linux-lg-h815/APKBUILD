@@ -1,4 +1,4 @@
-# Kernel config based on: arch/arm64/configs/(CHANGEME!)
+# Kernel config based on: arch/arm64/configs/lineageos_h815_defconfig
 
 pkgname="linux-lg-h815"
 pkgver=3.10.84
